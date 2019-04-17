@@ -1,0 +1,46 @@
+﻿@using CustomSmsProvider;
+@model CustomSmsProviderConfiguration
+@{
+    ViewBag.Title = "Custom Sms Provider";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section navbar {
+    <h2><a href="@Url.Action("Services", "Tenant", new { area = "Admin" })">Services</a></h2>
+}
+    <section>
+        <h1>Custom Sms Provider configuration</h1>
+        @using (Html.BeginForm("Edit", "CustomSmsProvider", FormMethod.Post, null))
+    {
+        @Html.ValidationBox()
+        @Html.Hidden("Id", Model.Id.ObfuscatedValue, new { @id = "Id" })
+        @Html.HiddenFor(m => m.SmsProviderType)
+        @Html.HiddenFor(m => m.ServiceType)
+        @if (Model.ServiceProviderImageUrl != null)
+        {
+        <img class="signin-button-image-no-hover" src="@Model.ServiceProviderImageUrl" />
+        <br />
+        <br />
+        }
+        <div class="form-group">
+            <label>Account id</label>
+            @Html.TextBoxFor(m => m.AccountId, new { @class = "normal focus" })
+            @Html.ValidationMessageFor(m => m.AccountId)
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            @Html.TextBoxFor(m => m.Password, new { @class = "normal focus" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "normal focus" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber)
+        </div>
+        <div class="form-actions">
+            <input id="save-button" class="btn btn-default" type="submit" value="Save" />
+        </div>
+}
+    </section>
+@section scripts {
+    @Scripts.Render("~/bundles/formval")
+}

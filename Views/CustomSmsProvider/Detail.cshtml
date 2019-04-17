@@ -1,0 +1,37 @@
+﻿@using CustomSmsProvider;
+@model CustomSmsProviderConfiguration
+@{
+    ViewBag.Title = "Custom Sms Provider";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section actionbar {
+    <ul class="navbar-nav">
+        <li><a href="@Url.Action("Edit")">Edit</a></li>
+    </ul>
+}
+@section navbar {
+    <h2><a href="@Url.Action("Services", "Tenant", new { area = "Admin" })">Services</a></h2>
+}
+
+    <section>
+        @if (Model.ServiceProviderImageUrl != null)
+        {
+        <img class="signin-button-image-no-hover" src="@Model.ServiceProviderImageUrl" />
+        <br />
+        <br />
+        }
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label>Account id</label>
+                <span class="normal">@Model.AccountId</span>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <span class="normal">@Model.Password</span>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <span class="normal">@Model.PhoneNumber</span>
+            </div>
+        </div>
+    </section>
